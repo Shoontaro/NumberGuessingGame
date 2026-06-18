@@ -4,26 +4,82 @@ internal class Program
 {
     private static void Main(string[] args)
     {
+        //Game game = new Game();
         Console.WriteLine("Welcome to the Number Guessing Game!\n" +
-            "I'm thinking of a number between 1 and 100.\n" +
-            "You have 5 chances to guess the correct number.\n");
-        
-            Lvl(out int chanses);
-            Game(chanses);
-        
+           "I'm thinking of a number between 1 and 100.\n" +
+           "You have 5 chances to guess the correct number.\n");
+
+        string exit = "";
+
+        do
+        {
+            Lvl(out int chances);
+            Game(chances);
+
+        } while(Exit());
     }
 
-    public static void Game(int chanses) 
+    private static bool Exit(){
+        while (true)
+        {
+            Console.WriteLine("Do you want to continue? y/n");
+
+            string command = Console.ReadLine() ?? "";
+
+            switch (command.Trim().ToLower())
+            {
+                case "y":
+                    return true;
+                case "n":
+                    return false;
+                default:
+                    Console.WriteLine("Wrong command");
+                break;
+            }
+        }
+    }
+
+    public static void Game(int chances)
     {
+
         Console.WriteLine("Let's start the game!\n");
 
         Random rand = new Random();
-        
 
-        for (int i = 0; i < chanses; i++)
+        int val = rand.Next(1, 100);
+
+
+        for (int i = 0; i < chances; i++)
         {
             Console.Write("Enter your guess: ");
 
+            Int32.TryParse(Console.ReadLine(), out int guess);
+
+            if (Check(guess, val))
+            {
+                Console.WriteLine($"Congratulations! You guessed the correct number in {++i} attempts.");
+                return;
+            }
+            else if (i == chances - 1) {
+                Console.WriteLine("Loser!");
+            }
+        }
+    }
+
+    private static bool Check(int guess, int val)
+    {
+        if (guess > val)
+        {
+            Console.WriteLine($"Incorrect! The number is less than {guess}.");
+            return false;
+        }
+        else if (guess == val) { 
+            return true;
+        }
+        else
+        {
+            Console.WriteLine($"Incorrect! The number is greater than {guess}.");
+            return false;
         }
     }
 
