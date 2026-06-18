@@ -1,4 +1,5 @@
 ﻿using System.Data;
+//using System.Text.RegularExpressions;
 
 internal class Program
 {
@@ -52,6 +53,10 @@ internal class Program
         for (int i = 0; i < chances; i++)
         {
             Console.Write("Enter your guess: ");
+
+            //do {
+             // добавить проверку вводимой команды на отсутствие числа
+            //} while ();
 
             Int32.TryParse(Console.ReadLine(), out int guess);
 
