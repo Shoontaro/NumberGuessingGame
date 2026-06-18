@@ -1,10 +1,12 @@
 ﻿using System.Data;
+using Spectre.Console;
 //using System.Text.RegularExpressions;
 
 internal class Program
 {
     private static void Main(string[] args)
     {
+       // AnsiConsole.MarkupLine("[bold red]Красный текст[/] и [green]зеленый текст[/]");
         //Game game = new Game();
         Console.WriteLine("Welcome to the Number Guessing Game!\n" +
            "I'm thinking of a number between 1 and 100.\n" +
@@ -53,10 +55,6 @@ internal class Program
         for (int i = 0; i < chances; i++)
         {
             Console.Write("Enter your guess: ");
-
-            //do {
-             // добавить проверку вводимой команды на отсутствие числа
-            //} while ();
 
             Int32.TryParse(Console.ReadLine(), out int guess);
 
